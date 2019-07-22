@@ -1,25 +1,25 @@
-public class Queue {
+public class Queue <Type> {
     private int capacity;
-    private int[] Queue;
+    private Type[] Queue;
     private int start = 0;
     private int end = 0;
     private int defaultCapacity = 5;
 
     public Queue(){
         this.capacity = this.defaultCapacity;
-        this.Queue = new int[this.capacity];
+        this.Queue = (Type[]) new Object[this.capacity];
     }
 
     public Queue(int capacity){
         this.capacity = capacity;
-        this.Queue = new int[this.capacity];
+        this.Queue = (Type[]) new Object[this.capacity];
     }
 
     public void throwException(String exception) throws Exception{
         throw new Exception(exception);
     }
 
-    public void add(int value) throws Exception{
+    public void add(Type value) throws Exception{
 
         if(this.end == (this.start - 1) % this.capacity ){
             throwException("Overflow start is " + this.start + " and end is " + this.end);
@@ -35,7 +35,7 @@ public class Queue {
 
     }
 
-    public int remove() throws Exception{
+    public Type remove() throws Exception{
 
         if(this.start == this.end){
             throwException("Underflow");
@@ -46,7 +46,7 @@ public class Queue {
             this.start %= this.capacity;
         }
 
-        int value = this.Queue[start];
+        Type value = this.Queue[start];
         this.start++;
         return value;
 
@@ -56,7 +56,7 @@ public class Queue {
     public static void main(String[] args) throws Exception {
         //Queue q = new Queue(5);
 
-        Queue q = new Queue();
+        Queue<Integer> q = new Queue<Integer>();
         for(int i = 0; i < 5; i++){
             q.add(i);
         }
